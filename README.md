@@ -1,0 +1,2 @@
+# Tellevo 
+ reinicio app
