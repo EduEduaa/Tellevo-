@@ -37,6 +37,10 @@
         <div *ngIf="form.controls.password.errors?.['required']"> la contreseña es requerida</div>
  
       </div>
+      <div>
+        
+      </div>
+
 
       <p  routerLink="forgot-password" class=" ion-text-center">¿Olvidaste tu Contraseña?</p>
 
@@ -52,6 +56,7 @@
 
     </form>
   </div>
+  <ion-checkbox [(ngModel)]="esConductor"> Es conductor? </ion-checkbox>
 
 
 </ion-content>

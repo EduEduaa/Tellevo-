@@ -14,6 +14,8 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class LoginPage implements OnInit {
 
+  esConductor: boolean = false;
+
   form = new FormGroup({
     uid: new FormControl(''),
   email:new FormControl('',[Validators.required,Validators.email]),
@@ -79,7 +81,14 @@ export class LoginPage implements OnInit {
       this.firebaseSvc.setDocument(path,this.form.value).then(async res =>{
 
         this.utilsSvc.saveInLocalStorage('user',this.form.value);
-        this.utilsSvc.routerLink('/main/home');
+
+        if (this.esConductor) {
+          // Si es conductor 
+          this.utilsSvc.routerLink('/main/chofer');
+        } else {
+          // Si no es conductor
+          this.utilsSvc.routerLink('/main/pasajero');
+        }
         this.form.reset();
         
       }).catch(error => {

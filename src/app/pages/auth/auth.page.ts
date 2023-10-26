@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+
 import { User } from 'src/app/models/user.model';
 
 //servicios importados //
@@ -15,7 +16,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class AuthPage implements OnInit {
 
-
+  esConductor: boolean = false;
   form = new FormGroup({
     
     email:new FormControl('',[Validators.required,Validators.email]),
@@ -62,7 +63,7 @@ export class AuthPage implements OnInit {
 
 
   async getUserInto(uid: string){
-    if(this.form.valid){
+    if(this.form.valid  ){
 
       const loading = await this.utilsSvc.loading();
       await loading.present();
@@ -71,13 +72,22 @@ export class AuthPage implements OnInit {
       
 
       this.firebaseSvc.getDocument(path).then((user:User) =>{
-
         this.utilsSvc.saveInLocalStorage('user', user);
-        this.utilsSvc.routerLink('/main/home');
+          
+        if (this.esConductor) {
+          // Si es conductor 
+          this.utilsSvc.routerLink('/main/chofer');
+        } else {
+          // Si no es conductor
+          this.utilsSvc.routerLink('/main/pasajero');
+        }
+  
+
+
         this.form.reset();
 
         this.utilsSvc.presentToast({
-          message: 'Te damos la Bienvenida $(user.name)',
+          message: 'Te damos la Bienvenida '+user.name,
           duration:1500,
           color:'success',
           position:'middle',
@@ -103,4 +113,6 @@ export class AuthPage implements OnInit {
     }
   
   }
+
+  
 }
