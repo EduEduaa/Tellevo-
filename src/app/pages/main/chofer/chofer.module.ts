@@ -8,11 +8,14 @@ import { ChoferPageRoutingModule } from './chofer-routing.module';
 
 import { ChoferPage } from './chofer.page';
 
+import { SharedModule } from 'src/app/shared/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModule,
     ChoferPageRoutingModule
   ],
   declarations: [ChoferPage]

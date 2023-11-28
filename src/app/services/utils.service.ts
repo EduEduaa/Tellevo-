@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 
-import { LoadingController, ToastController,ToastOptions} from '@ionic/angular';
+import { LoadingController, ModalController, ModalOptions,ToastController,ToastOptions} from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class UtilsService {
 
   loadingCtrl = inject(LoadingController);
   toastCrl = inject(ToastController);
+  modalCrl = inject(ModalController);
   router = inject(Router)
 
   // loading //
@@ -42,6 +43,21 @@ saveInLocalStorage(key: string, value: any){
 getFromLocalStorage(key:string){
   return JSON.parse(localStorage.getItem(key));
 }
+//  modal para crear viaje
+
+async presentModal(opts: ModalOptions) {
+  const modal = await this.modalCrl.create(opts);
+
+  await modal.present();
+
+  const {data} = await modal.onWillDismiss();
+  if(data)return data;
+}
+
+dismissModal(data?:any){
+  return this.modalCrl.dismiss(data);
+}
+
 
 }
 

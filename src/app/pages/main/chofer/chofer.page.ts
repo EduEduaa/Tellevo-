@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { UtilsService } from 'src/app/services/utils.service';
+import { AddCrearViajeComponent } from 'src/app/shared/components/add-crear-viaje/add-crear-viaje.component';
 
 @Component({
   selector: 'app-chofer',
@@ -9,6 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ChoferPage implements OnInit {
 
   user:any;
+  firebaseSvc = inject(FirebaseService);
+  utilsSvc = inject (UtilsService);
+
 
 
   constructor(private router: Router, private route: ActivatedRoute) { 
@@ -38,5 +44,17 @@ export class ChoferPage implements OnInit {
 
   ngOnInit() {
   }
+
+
+
+/////
+
+addCrearViaje(){
+
+  this.utilsSvc.presentModal({
+    component:AddCrearViajeComponent,
+    cssClass : 'add-crear-modal'
+  })
+}
 
 }

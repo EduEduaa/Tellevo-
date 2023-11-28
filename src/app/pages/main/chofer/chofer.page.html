@@ -15,7 +15,7 @@
      
       <ion-item >
         <ion-icon name="person-outline"></ion-icon>
-        <ion-label>Mi perfil "{{ user.name }}"</ion-label>
+        <ion-label> "{{ user.name }}"</ion-label>
       </ion-item>
      
       <ion-item >
@@ -50,9 +50,20 @@
    
     <ion-content class="ion-padding" class="ion-text-center custom-content"> 
       
-      
+
+    <!-- boton para crear el viaje -->
+       <ion-fab  slot="fixed"  horizontal="start" >
+        <ion-fab-button (click)="addCrearViaje()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
+
         <ion-label> 
-          <ion-button class="ion-button-center">MI RUTA</ion-button>  
+          <ion-button class="ion-button-center" >Crear Viaje</ion-button> 
+              
+   
+     
          
           <ion-button class="ion-button-center" color="success"> <ion-icon name="car-sport-outline"></ion-icon>MI Auto</ion-button> 
           <br>
@@ -75,9 +86,12 @@
       
       <img src="assets/mapa1.jpg" alt="">
       
+      
+  
+ 
        </ion-content>
   
-
+       
 
 <ion-tabs>
   <ion-tab-bar slot="bottom">
