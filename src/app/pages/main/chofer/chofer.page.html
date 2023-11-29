@@ -70,21 +70,20 @@
         </ion-label>
       
 
-        <ion-label> 
-          <ion-searchbar color="secondary" placeholder="Buscar ruta"></ion-searchbar>
-
-        </ion-label>
+     <!-- lista de viajes -->
       
-    
+     <ion-content>
+      <div *ngFor="let viaje of viajes">
+        <!-- Mostrar detalles del viaje según la estructura de tus datos -->
+        {{ viaje.nombre}}
+        {{ viaje.marca}}
+        {{ viaje.patente}}
+        {{ viaje.capacidad}}
+      </div>
+    </ion-content>
       
-      <ion-item>
-        <ion-label> 
-          <ion-icon name="location-outline"></ion-icon>
-          <p>Cerro chacabuco ,Concepcion , Bio Bio</p>
-        </ion-label>
-      </ion-item>
       
-      <img src="assets/mapa1.jpg" alt="">
+      
       
       
   

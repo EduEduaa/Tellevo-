@@ -6,7 +6,10 @@ import { User } from '../models/user.model';
 
 // para la base de datos import firestore 
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import { getFirestore ,setDoc,doc,getDoc} from '@angular/fire/firestore';
+import { getFirestore ,setDoc,doc,getDoc,addDoc ,collection,collectionData, query, DocumentData} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
+
 
 
 @Injectable({
@@ -49,7 +52,7 @@ sendRecoveryEmail(email:string){
 //================ base de datos ============00 
 
 
-setDocument(path: string, data: any ){
+setDocument(path: string  , data: any ){
   return setDoc(doc(getFirestore(),path),data);
 
 }
@@ -59,8 +62,26 @@ async getDocument(path: string){
 
 }
 
+// --------------- agregar un viaje ----
 
 
+
+addDocument(path: string  , data: any){
+
+  return addDoc(collection(getFirestore(),path),data);
+}
+
+
+
+//  esto no funcaaAAAAA 
+
+getCollectionData(path: string): Observable<DocumentData[]> {
+  const collectionRef = this.firestore.collection(path);
+  return collectionRef.valueChanges();
+}
 
 
 }
+
+
+

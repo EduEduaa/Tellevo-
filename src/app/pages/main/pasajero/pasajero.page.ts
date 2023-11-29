@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,inject} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-pasajero',
@@ -9,8 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PasajeroPage implements OnInit {
 
+  firebaseSvc = inject(FirebaseService);
+  utilsSvc = inject (UtilsService);
   user:any;
-
+  viajes:any[];
 
   constructor(private router: Router, private route: ActivatedRoute) { 
 
@@ -38,6 +41,19 @@ export class PasajeroPage implements OnInit {
 
 
   ngOnInit() {
+    this.getViajes();
   }
+
+
+  getViajes() {
+    const path = 'users/$(uid)/viajes'; // Asegúrate de tener el ID de usuario disponible (podría ser this.user.uid u otra fuente)
+    
+    // Llamar al servicio para obtener la colección de viajes
+    this.firebaseSvc.getCollectionData(path).subscribe((viajes: any[]) => {
+      this.viajes = viajes;
+    });
+  }
+
+
 
 }

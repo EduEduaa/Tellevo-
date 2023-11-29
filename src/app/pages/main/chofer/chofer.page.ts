@@ -1,5 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
+
+
+import { User } from 'src/app/models/user.model';
+
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AddCrearViajeComponent } from 'src/app/shared/components/add-crear-viaje/add-crear-viaje.component';
@@ -11,9 +16,13 @@ import { AddCrearViajeComponent } from 'src/app/shared/components/add-crear-viaj
 })
 export class ChoferPage implements OnInit {
 
-  user:any;
+
   firebaseSvc = inject(FirebaseService);
   utilsSvc = inject (UtilsService);
+  viajes:any[];
+
+  
+
 
 
 
@@ -43,11 +52,14 @@ export class ChoferPage implements OnInit {
 
 
   ngOnInit() {
+    this.getViajes();
   }
 
+ user(): User{
+  return this.utilsSvc.getFromLocalStorage('user');
+}
 
-
-/////
+///// creando viaje apartir del modal 
 
 addCrearViaje(){
 
@@ -55,6 +67,21 @@ addCrearViaje(){
     component:AddCrearViajeComponent,
     cssClass : 'add-crear-modal'
   })
+}
+//
+
+//ejecuta la funcion cada vez que el usuario entra a la pagina
+
+
+// obteniendo la colleccion 
+
+getViajes() {
+  const path = 'users/$(uid)/viajes'; // Asegúrate de tener el ID de usuario disponible (podría ser this.user.uid u otra fuente)
+  
+  // Llamar al servicio para obtener la colección de viajes
+  this.firebaseSvc.getCollectionData(path).subscribe((viajes: any[]) => {
+    this.viajes = viajes;
+  });
 }
 
 }

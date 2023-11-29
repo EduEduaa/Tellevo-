@@ -66,7 +66,15 @@
 
         </ion-label>
       
-     
+     <ion-content>
+        <div *ngFor="let viaje of viajes">
+          <!-- Mostrar detalles del viaje según la estructura de tus datos -->
+          {{ viaje.nombre}}
+          {{ viaje.marca}}
+          {{ viaje.patente}}
+          {{ viaje.capacidad}}
+        </div>
+      </ion-content>
       
       <ion-item>
         <ion-label> 
@@ -82,7 +90,8 @@
 
 
 
-
+       
+        
 
 
 <ion-tabs>

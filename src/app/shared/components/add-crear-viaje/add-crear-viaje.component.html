@@ -7,7 +7,84 @@
     <ion-icon name="close-circle-outline"></ion-icon>
     </ion-button>
       Crear Viajes </ion-title>
-  
+    
    
   </ion-toolbar> 
 </ion-header>
+
+<ion-content>
+
+  <form [formGroup]="form" class="ion-no-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+      
+
+
+
+    <!-- nombre  -->
+    
+    <app-custom-input 
+    autocomplete="nombre"
+    [control]="form.controls.nombre"
+    type="text"
+    label="Nombre"></app-custom-input>
+
+
+    <div class="validators" *ngIf="form.controls.nombre.errors && form.controls.nombre.touched">
+      <div *ngIf="form.controls.nombre.errors?.['required']" color-text="danger"> El correo es requerido</div>
+      <div *ngIf="form.controls.nombre.errors?.['minlenght']"> Ingrese correo valido</div>
+    </div>
+
+    <!-- marca -->
+
+    <app-custom-input 
+    [control]="form.controls.marca"
+    icon="lock-closed-outline"
+    type="text"
+    label="Marca"
+    ></app-custom-input>
+
+    <div class="validators " *ngIf="form.controls.marca.errors && form.controls.marca.touched">
+      <div *ngIf="form.controls.marca.errors?.['required']"> la contreseña es requerida</div>
+      <div *ngIf="form.controls.marca.errors?.['minlenght']"> Ingrese correo valido</div>
+
+    </div>
+
+      <!-- patente -->
+    
+    <app-custom-input 
+    autocomplete="patente"
+    [control]="form.controls.patente"
+    type="text"
+    label="Patente"></app-custom-input>
+
+
+    <div class="validators" *ngIf="form.controls.patente.errors && form.controls.patente.touched">
+      <div *ngIf="form.controls.patente.errors?.['required']" color-text="danger"> El correo es requerido</div>
+      <div *ngIf="form.controls.patente.errors?.['minlenght']"> Ingrese correo valido</div>
+    </div>
+
+    <!-- capacidad -->
+    
+
+    <app-custom-input 
+    autocomplete="capacidad"
+    [control]="form.controls.capacidad"
+    type="text"
+    label="capacidad"></app-custom-input>
+
+
+    <div class="validators" *ngIf="form.controls.capacidad.errors && form.controls.capacidad.touched">
+      <div *ngIf="form.controls.capacidad.errors?.['required']" color-text="danger"> El correo es requerido</div>
+      <div *ngIf="form.controls.capacidad.errors?.['min']"> Ingrese correo valido</div>
+    </div>
+
+
+    <ion-button  mode="ios" class="submit"type="submit" [disabled]="form.invalid" >
+      INGRESAR VIAJE
+      <ion-icon slot="end" name="log-in-outline"></ion-icon>
+    </ion-button>
+
+    
+
+  </form>
+
+</ion-content>
