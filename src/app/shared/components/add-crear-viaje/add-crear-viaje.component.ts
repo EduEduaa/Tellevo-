@@ -20,11 +20,12 @@ export class AddCrearViajeComponent  implements OnInit {
 
    
     form = new FormGroup({
+      
     
-    nombre:new FormControl('',[Validators.required,Validators.minLength(4)]),
-    marca:new FormControl('',[Validators.required,Validators.minLength(4)]),
-    patente:new FormControl('',[Validators.required,Validators.minLength(4)]),
-    capacidad:new FormControl('',[Validators.required,Validators.min(0)]),
+    nombre: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      marca: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      patente: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
+      capacidad: new FormControl('', [Validators.required, Validators.pattern('^[1-4]$')]),
 
   })
   //injecciones de servicios services //

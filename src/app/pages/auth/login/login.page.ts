@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
 
   form = new FormGroup({
     uid: new FormControl(''),
-  email:new FormControl('',[Validators.required,Validators.email]),
+   email:new FormControl('',[Validators.required,Validators.email]),
    password:new FormControl('',[Validators.required]),
    name:new FormControl('',[Validators.required,Validators.minLength(4)]),
 
@@ -44,6 +44,7 @@ export class LoginPage implements OnInit {
 
         let uid = res.user.uid;
         this.form.controls.uid.setValue(uid);
+
 
         this.setUserInto(uid);
 

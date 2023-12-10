@@ -71,15 +71,21 @@
       
 
      <!-- lista de viajes -->
-      
      <ion-content>
-      <div *ngFor="let viaje of viajes">
-        <!-- Mostrar detalles del viaje según la estructura de tus datos -->
-        {{ viaje.nombre}}
-        {{ viaje.marca}}
-        {{ viaje.patente}}
-        {{ viaje.capacidad}}
-      </div>
+      <ion-list>
+        <ion-item *ngFor="let viaje of viajes">
+          <ion-label>
+            <!-- Mostrar detalles del viaje según la estructura de tus datos -->
+            <h2>{{ viaje.nombre }}</h2>
+            <p>Marca: {{ viaje.marca }}</p>
+            <p>Patente: {{ viaje.patente }}</p>
+            <p>Capacidad: {{ viaje.capacidad }}</p>
+          </ion-label>
+          <ion-button   color="primary" slot="end">
+            Seleccionar Viaje
+          </ion-button>
+        </ion-item>
+      </ion-list>
     </ion-content>
       
       

@@ -76,12 +76,18 @@ addCrearViaje(){
 // obteniendo la colleccion 
 
 getViajes() {
-  const path = 'users/$(uid)/viajes'; // Asegúrate de tener el ID de usuario disponible (podría ser this.user.uid u otra fuente)
-  
-  // Llamar al servicio para obtener la colección de viajes
+  if (!this.user || !this.user) {
+    console.error('No se proporcionó un UID de usuario válido.');
+    return;
+  }
+
+  const path = 'users/$(uid)/viajes'; // Asegúrate de tener el ID de usuario disponible (this.user.uid)
+
+  // Llamar al servicio para obtener la colección de viajes para el usuario actual
   this.firebaseSvc.getCollectionData(path).subscribe((viajes: any[]) => {
     this.viajes = viajes;
   });
 }
+
 
 }
