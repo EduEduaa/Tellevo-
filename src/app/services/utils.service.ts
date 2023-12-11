@@ -54,6 +54,8 @@ async presentModal(opts: ModalOptions) {
   if(data)return data;
 }
 
+
+
 dismissModal(data?:any){
   return this.modalCrl.dismiss(data);
 }

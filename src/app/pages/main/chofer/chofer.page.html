@@ -1,9 +1,4 @@
 
-
-
-
-<ion-content  [fullscreen]="false" >
-
   <ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar>
@@ -18,6 +13,13 @@
         <ion-label> "{{ user.name }}"</ion-label>
       </ion-item>
      
+      <ion-item >
+        <ion-icon  name="walk-outline"(click)="modopasajero() " ></ion-icon>
+        <ion-label>modo pasajero</ion-label>
+      </ion-item>
+     
+      
+
       <ion-item >
         <ion-icon name="return-down-back-outline" (click)="Cerrarsecion()"></ion-icon>
         <ion-label>Cerrar Sesion</ion-label>
@@ -35,6 +37,7 @@
     </ion-list>
   </ion-content>
 </ion-menu>
+
 
 <div class="ion-page" id="main-content">
   <ion-header>
@@ -61,10 +64,6 @@
 
         <ion-label> 
           <ion-button class="ion-button-center" >Crear Viaje</ion-button> 
-              
-   
-     
-         
           <ion-button class="ion-button-center" color="success"> <ion-icon name="car-sport-outline"></ion-icon>MI Auto</ion-button> 
           <br>
         </ion-label>
@@ -91,23 +90,7 @@
       
       
       
-      
+     </ion-content>
   
- 
-       </ion-content>
-  
-       
 
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-   
-    <ion-tab-button tab="radio" (click)="modopasajero() ">
-      <ion-icon name="accessibility-outline"></ion-icon>  Modo Pasajero
-    </ion-tab-button>
-    <ion-tab-button tab="radio" >
-      <ion-icon name="car-sport-outline"></ion-icon>  Modo Chofer 
-     </ion-tab-button>
 
- 
-  </ion-tab-bar>
-</ion-tabs>

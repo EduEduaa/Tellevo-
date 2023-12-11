@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild, inject } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user.model';
 
 import { UtilsService } from 'src/app/services/utils.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { GmapsService } from 'src/app/services/gmaps/gmaps.service';
 
 @Component({
   selector: 'app-add-crear-viaje',
@@ -33,12 +34,38 @@ export class AddCrearViajeComponent  implements OnInit {
   utilsSvc = inject(UtilsService);
   user= {} as User;
 
+  @ViewChild('map', {static: true}) mapElementRef: ElementRef;
+  googleMaps: any;
+  center = { lat:-36.795742 , lng:-73.062716  };
+  map: any;
+ 
+ 
+ 
+ 
+  mapClickListener: any;
+  markerClickListener: any;
+  markers: any[] = [];
+ 
+  
 
+
+  constructor(
+    private gmaps: GmapsService,
+    private renderer: Renderer2,
+    ) { 
+
+    // Obtener el usuario desde el localStorage
+   
+    }
 
 
   ngOnInit() {
     this.user = this.utilsSvc.getFromLocalStorage('user');
 
+  }
+
+  ngAfterViewInit() {
+    this.loadMap();
   }
 
   dismissModal(){
@@ -97,6 +124,28 @@ export class AddCrearViajeComponent  implements OnInit {
  
 
  
+
+
+  async loadMap() {
+    try {
+      let googleMaps: any = await this.gmaps.loadGoogleMaps();
+      this.googleMaps = googleMaps;
+      const mapEl = this.mapElementRef.nativeElement;
+      const location = new googleMaps.LatLng(this.center.lat, this.center.lng);
+      this.map = new googleMaps.Map(mapEl, {
+        center: location,
+        zoom: 16,
+      });
+      this.renderer.addClass(mapEl, 'visible');
+
+     
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+
+
 
   }
 

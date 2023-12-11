@@ -65,6 +65,8 @@ export class PasajeroPage implements OnInit {
   ngOnInit() {
     this.getViajes();
   }
+
+  
   ngAfterViewInit() {
     this.loadMap();
   }
