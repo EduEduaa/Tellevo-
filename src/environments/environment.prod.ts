@@ -8,7 +8,8 @@ export const environment = {
     messagingSenderId: '975880927614',
   },
 
-  production: true
+  production: true, 
+  googleMapsApiKey: 'AIzaSyAyKjKHpnMloezs0nhUTKg2-bBSLe2R3ZQ'
   
 
 };

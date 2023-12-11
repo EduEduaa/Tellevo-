@@ -1,7 +1,10 @@
-import { Component, OnInit ,inject} from '@angular/core';
+import { Component, ElementRef, OnInit ,Renderer2,ViewChild,inject} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
+
+import { GmapsService } from 'src/app/services/gmaps/gmaps.service';
+
 
 @Component({
   selector: 'app-pasajero',
@@ -15,7 +18,26 @@ export class PasajeroPage implements OnInit {
   user:any;
   viajes:any[];
 
-  constructor(private router: Router, private route: ActivatedRoute) { 
+  
+ @ViewChild('map', {static: true}) mapElementRef: ElementRef;
+ googleMaps: any;
+ center = { lat:-36.795742 , lng:-73.062716  };
+ map: any;
+
+
+
+
+ mapClickListener: any;
+ markerClickListener: any;
+ markers: any[] = [];
+
+ 
+
+
+    constructor(private router: Router, private route: ActivatedRoute,
+    private gmaps: GmapsService,
+    private renderer: Renderer2,
+    ) { 
 
     // Obtener el usuario desde el localStorage
     const usuarioJSON = localStorage.getItem('user');
@@ -43,6 +65,9 @@ export class PasajeroPage implements OnInit {
   ngOnInit() {
     this.getViajes();
   }
+  ngAfterViewInit() {
+    this.loadMap();
+  }
 
 
   getViajes() {
@@ -54,6 +79,25 @@ export class PasajeroPage implements OnInit {
     });
   }
 
+
+
+  async loadMap() {
+    try {
+      let googleMaps: any = await this.gmaps.loadGoogleMaps();
+      this.googleMaps = googleMaps;
+      const mapEl = this.mapElementRef.nativeElement;
+      const location = new googleMaps.LatLng(this.center.lat, this.center.lng);
+      this.map = new googleMaps.Map(mapEl, {
+        center: location,
+        zoom: 16,
+      });
+      this.renderer.addClass(mapEl, 'visible');
+
+     
+    } catch(e) {
+      console.log(e);
+    }
+  }
 
 
 }

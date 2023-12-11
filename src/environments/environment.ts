@@ -13,6 +13,7 @@ export const environment = {
   },
   
   production: false,
+  googleMapsApiKey: 'AIzaSyAyKjKHpnMloezs0nhUTKg2-bBSLe2R3ZQ',
 
 
   firebaseConfig : {

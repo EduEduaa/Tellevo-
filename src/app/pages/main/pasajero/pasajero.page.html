@@ -61,10 +61,7 @@
          
 
      
-        <ion-label> 
-          <ion-searchbar color="secondary" placeholder="Buscar destinos"></ion-searchbar>
-
-        </ion-label>
+          
       
         <ion-content>
           <ion-list>
@@ -80,7 +77,9 @@
                 Seleccionar Viaje
               </ion-button>
             </ion-item>
+           
           </ion-list>
+           <div class="map" #map></div>
         </ion-content>
       
       <ion-item>
@@ -90,7 +89,6 @@
         </ion-label>
       </ion-item>
       
-      <img src="assets/mapa1.jpg" alt="">
       
        </ion-content>
   
@@ -98,20 +96,5 @@
 
 
        
-        
+       
 
-
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    
-    <ion-tab-button tab="radio">
-      <ion-icon name="accessibility-outline"></ion-icon>  Modo Pasajero
-    </ion-tab-button>
-
-    <ion-tab-button tab="radio" (click)="modoconductor()">
-      <ion-icon name="car-sport-outline"></ion-icon>  Modo Chofer 
-     </ion-tab-button>
-
-   
-  </ion-tab-bar>
-</ion-tabs>

@@ -2,3 +2,16 @@
     --ion-background-color: linear-gradient(to bottom, rgb(1, 1, 58), rgb(32, 120, 235));
     --ion-text-color: rgb(244, 236, 2); /* Cambia el color del texto */
   }
+
+  .map {
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    background-color: transparent;
+    opacity: 0;
+    transition: opacity 150ms ease-in;
+  }
+  
+  .map.visible {
+    opacity: 1;
+  }
